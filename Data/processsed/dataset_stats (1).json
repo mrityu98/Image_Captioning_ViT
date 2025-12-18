@@ -1,0 +1,15 @@
+{
+    "total_images": 20000,
+    "train_images": 18000,
+    "val_images": 1000,
+    "test_images": 1000,
+    "train_captions": 90000,
+    "val_captions": 5000,
+    "test_captions": 5000,
+    "vocabulary_size": 20321,
+    "avg_caption_length_words": 13.388194946984237,
+    "avg_caption_length_chars": 64.20595916055753,
+    "max_caption_length_words": 82,
+    "min_caption_length_words": 0,
+    "random_seed": 42
+}

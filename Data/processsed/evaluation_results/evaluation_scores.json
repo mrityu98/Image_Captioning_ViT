@@ -1,0 +1,26 @@
+{
+    "corpus_scores": {
+        "BLEU-1": 63.30867306784197,
+        "BLEU-2": 42.39284041202649,
+        "BLEU-3": 28.86663562811925,
+        "BLEU-4": 19.213574791489773,
+        "ROUGE-L": 42.9493579508149
+    },
+    "individual_bleu4_stats": {
+        "mean": 17.256645296835515,
+        "median": 11.227496440695791,
+        "std": 15.40459434130411,
+        "min": 1.5815216252224022,
+        "max": 100.0
+    },
+    "rouge_l_stats": {
+        "mean": 42.9493579508149,
+        "median": 41.666666666666664,
+        "std": 13.776550265070686,
+        "min": 9.523809523809526,
+        "max": 100.0
+    },
+    "num_test_samples": 1000,
+    "model_checkpoint": "/content/drive/MyDrive/flickr30k_images/processed/checkpoints/best_model.pt",
+    "trained_epochs": 3
+}

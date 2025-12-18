@@ -1,0 +1,27 @@
+{
+    "corpus_scores": {
+        "BLEU-1": 44.21279654924515,
+        "BLEU-2": 26.364881817192128,
+        "BLEU-3": 15.475208671427579,
+        "BLEU-4": 8.840309264204478,
+        "ROUGE-L": 36.59204431649991
+    },
+    "individual_bleu4_stats": {
+        "mean": 8.515437601347443,
+        "median": 4.913270548144421,
+        "std": 9.296654589071057,
+        "min": 1.2285946074705658,
+        "max": 71.86082239261684
+    },
+    "rouge_l_stats": {
+        "mean": 36.59204431649991,
+        "median": 34.78260869565217,
+        "std": 12.528916835453032,
+        "min": 8.695652173913045,
+        "max": 84.21052631578948
+    },
+    "num_test_samples": 1000,
+    "dataset": "COCO2017_val_subset",
+    "model_checkpoint": "/content/drive/MyDrive/flickr30k_images/processed/checkpoints/best_model.pt",
+    "trained_epochs": 3
+}

@@ -1,0 +1,18 @@
+# Editor settings
+.vscode/
+
+# Large datasets
+Data/flickr30k_images/
+Data/processed/
+
+# Model checkpoints
+checkpoints/
+App/best_model.pt
+best_model.pt
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Python cache
+__pycache__/
+*.pyc
