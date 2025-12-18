@@ -82,42 +82,16 @@ class ImageCaptioningModel(nn.Module):
 
 @st.cache_resource
 def load_model():
-    """Load model and tokenizer (cached)"""
-    
-    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    
-    # Initialize tokenizer
-    tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
-    special_tokens = {
-        'pad_token': '<|pad|>',
-        'bos_token': '<|startoftext|>',
-        'eos_token': '<|endoftext|>'
-    }
-    tokenizer.add_special_tokens(special_tokens)
-    
-    # Create model
-    model = ImageCaptioningModel(
-        swin_model_name='swin_tiny_patch4_window7_224',
-        gpt2_model_name='gpt2',
-        tokenizer=tokenizer
+    # Download model from Hugging Face
+    model_path = hf_hub_download(
+        repo_id="digital-base/SWIN-GPT-Image_Caption",
+        filename="best_model.pt",
+        cache_dir="./model_cache"
     )
     
-    # Load checkpoint
-    checkpoint_path = 'best_model.pt'  # Place your checkpoint in same directory
-    
-    if os.path.exists(checkpoint_path):
-        checkpoint = torch.load(checkpoint_path, map_location=device)
-        model.load_state_dict(checkpoint['model_state_dict'])
-        # Model loaded silently
-    else:
-        st.error(f"Checkpoint not found: {checkpoint_path}")
-        st.info("Please place 'best_model.pt' in the same directory as this app")
-        return None, None, None
-    
-    model = model.to(device)
-    model.eval()
-    
-    return model, tokenizer, device
+    # Load the model
+    model = torch.load(model_path, map_location='cpu')
+    return model
 
 def preprocess_image(image):
     """Preprocess image for model"""
