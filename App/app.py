@@ -83,9 +83,12 @@ class ImageCaptioningModel(nn.Module):
 @st.cache_resource
 def load_model():
     # Download model from Hugging Face
+    token = st.secrets.get("HF_TOKEN", None)
+    
     model_path = hf_hub_download(
         repo_id="digital-base/SWIN-GPT-Image_Caption",
         filename="best_model.pt",
+        token=token,
         cache_dir="./model_cache"
     )
     
