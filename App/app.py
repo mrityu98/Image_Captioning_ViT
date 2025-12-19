@@ -13,6 +13,7 @@ from PIL import Image
 import timm
 from transformers import GPT2LMHeadModel, GPT2Tokenizer
 from torchvision import transforms
+from huggingface_hub import hf_hub_download
 
 st.set_page_config(
     page_title="Image Captioning",
