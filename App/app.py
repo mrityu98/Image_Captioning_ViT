@@ -83,19 +83,43 @@ class ImageCaptioningModel(nn.Module):
 
 @st.cache_resource
 def load_model():
-    # Download model from Hugging Face
-    token = st.secrets.get("HF_TOKEN", None)
-    
-    model_path = hf_hub_download(
-        repo_id="digital-base/SWIN-GPT-Image_Caption",
-        filename="best_model.pt",
-        token=token,
-        cache_dir="./model_cache"
-    )
-    
-    # Load the model
-    model = torch.load(model_path, map_location='cpu')
-    return model
+    """Load model, tokenizer, and device"""
+    try:
+        # Get token from secrets
+        token = st.secrets.get("HF_TOKEN", None)
+        
+        st.info("⏳ Downloading model from Hugging Face...")
+        
+        # Download model
+        model_path = hf_hub_download(
+            repo_id="digital-base/SWIN-GPT-Image_Caption",
+            filename="best_model.pt",
+            token=token,
+            cache_dir="./model_cache"
+        )
+        
+        st.success("✅ Model downloaded!")
+        
+        # Set device
+        device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+        
+        # Load model
+        model = torch.load(model_path, map_location=device)
+        model.eval()
+        
+        # Load tokenizer
+        tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
+        
+        # Return all 3 values (IMPORTANT!)
+        return model, tokenizer, device
+
+    except Exception as e:
+        st.error(f"❌ Error: {str(e)}")
+        import traceback
+        st.code(traceback.format_exc())
+        return None, None, None
+
+
 
 def preprocess_image(image):
     """Preprocess image for model"""
